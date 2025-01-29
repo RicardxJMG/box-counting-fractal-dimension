@@ -1,3 +1,4 @@
 *.asv
 .vscode/
-'downloaded scripts'/
+'downloaded scripts'
+.optimization_in_progress.m
