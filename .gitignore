@@ -1,4 +1,4 @@
 *.asv
 .vscode/
-'downloaded scripts'
 .optimization_in_progress.m
+sierpinski.m

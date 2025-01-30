@@ -1,4 +1,25 @@
 function [matrix_count, total_boxes] = box_counting(image, box_length, previous_count)
+    % Description:
+    % This function evaluate the amount of boxes from a mesh of length 'box_length' which intersect with a non white 
+    % pixel of the image. The optimization of this code, unfortunately, did not work for images of size = [n,m,~],
+    % where n,m are not necessary a power of 2. 
+    % 
+    % --------------------------------------------------------------------------------
+    % Input:
+    % -  image: A tridimensional matrix which represent a rgb image format.
+    % -  box_length: A positive integer number, indicates the length of every box. 
+    % -  previous_count: A binary matrix representing a previous count. In particular, represent the "position"
+    %                    where the box intersects the image.
+    % 
+    % --------------------------------------------------------------------------------
+    % Output:
+    % -  matrix_count: A binary matriz where 1 represent a box intersecting the image, otherwise 0. 
+    % -  total_boxes: The sum of all values of 'matrix_count'.
+    %
+    % --------------------------------------------------------------------------------
+    % Observation: 
+    % - If you are working with images of size = [2^p,2^q,~] you are able to feel free of uncomment the 'else' part 
+    %   of this code. It is important read the minkowski_dimension function if you did this.
     
     [n, m, ~] = size(image);
     negative_image = abs(255-image); %transform the image in negative color
@@ -23,9 +44,47 @@ function [matrix_count, total_boxes] = box_counting(image, box_length, previous_
                 non_white_box(i,j) = nnz(tmp_image) > 0;
             end
         end
-        % else 
-        % OPTIMIZATION WILL ADD HERE
 
+        % THIS OPTIMIZATION REQUIEREs NON EMPTY PREVIOUS COUNT
+        % else     
+%         % indexes of non zero values; both arrays must have same length
+%         [rows, cols] = find(previous_count);
+%         
+%         for prev_index = 1:length(rows)
+%             % index for the box of previous iteration
+%             i_prev = rows(prev_index);
+%             j_prev = cols(prev_index);
+% 
+%             % suppose four sub-boxes inside in the previous box
+%             i_new = 2*(i_prev-1);
+%             j_new = 2*(j_prev-1);
+%             boxes_indexes = [
+%                 i_new+1, j_new+1; % top left box
+%                 i_new+1, j_new+2; % top right box
+%                 i_new+2, j_new+1; % bottom left box
+%                 i_new+2, j_new+2 % bottom right box
+%             ];
+%             %fprintf("Previous index: (%d,%d)\n", [i_prev, j_prev])
+%             for i = 1:length(boxes_indexes)
+%                 x_current_index = boxes_indexes(i,1);
+%                 y_current_index = boxes_indexes(i,2);
+%                 
+%                 %fprintf("\n\t-> index: (%d,%d)\n", [x_current_index, y_current_index])
+%                 if x_current_index <= x_total_boxes && y_current_index <= y_total_boxes
+%                     box_length_start = (x_current_index-1)*box_length + 1;
+%                     box_length_end = min(x_current_index*box_length, n);
+%                     box_height_star = (y_current_index-1)*box_length +1;
+%                     box_height_end = min(y_current_index*box_length,m);
+%             
+%                     tmp_image = negative_image(box_length_start:box_length_end, box_height_star:box_height_end,:);
+%                     non_white = nnz(tmp_image)>0;
+% %                     % str_img = "box ("+ num2str(x_current_index) + "," + num2str(y_current_index) + ")  Is empty = " + num2str(non_white);
+% %                     % figure("Name",str_img), imshow(tmp_image)
+% %                     % pause(0.2)
+%                     non_white_box(x_current_index, y_current_index) = non_white_box(x_current_index, y_current_index) || non_white;
+%                 end   
+%             end
+%         end 
     end
 
 
