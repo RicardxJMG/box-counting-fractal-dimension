@@ -1,25 +1,25 @@
 function [matrix_count, total_boxes] = box_counting(image, box_length, previous_count)
     % Description:
-    % This function evaluate the amount of boxes from a mesh of length 'box_length' which intersect with a non white 
-    % pixel of the image. The optimization of this code, unfortunately, did not work for images of size = [n,m,~],
-    % where n,m are not necessary a power of 2. 
+    % This function evaluates the number of boxes from a mesh of length 'box_length' that intersect with a non-white 
+    % pixel in the image. The optimization of this code, unfortunately, did not work for images of size = [n,m,~],
+    % where n and m are not necessarily  power of 2. 
     % 
     % --------------------------------------------------------------------------------
     % Input:
-    % -  image: A tridimensional matrix which represent a rgb image format.
-    % -  box_length: A positive integer number, indicates the length of every box. 
+    % -  image: A three-dimensional matrix representing an rgb image.
+    % -  box_length: A positive integer number, indicating the length of each box. 
     % -  previous_count: A binary matrix representing a previous count. In particular, represent the "position"
     %                    where the box intersects the image.
     % 
     % --------------------------------------------------------------------------------
     % Output:
-    % -  matrix_count: A binary matriz where 1 represent a box intersecting the image, otherwise 0. 
+    % -  matrix_count: A binary matriz where 1 represents a box intersecting the image, otherwise 0. 
     % -  total_boxes: The sum of all values of 'matrix_count'.
     %
     % --------------------------------------------------------------------------------
     % Observation: 
-    % - If you are working with images of size = [2^p,2^q,~] you are able to feel free of uncomment the 'else' part 
-    %   of this code. It is important read the minkowski_dimension function if you did this.
+    % - If you are working with images of size = [2^p,2^q,~] you can safely uncomment the 'else' part 
+    %   of this code. It is important to read the minkowski_dimension function if you did this.
     
     [n, m, ~] = size(image);
     negative_image = abs(255-image); %transform the image in negative color

@@ -11,7 +11,7 @@ imshow(image_)
 close all
 minkowski_dimension(image_,1.25,'create_gif', 'gif_name', fractal_name + "gif");
 
-%%
+%% 
 
 % sierpinski = 1.6280 with divisor equal to 2
 % dragon = 1.8356 with divisor 2

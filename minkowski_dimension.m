@@ -5,30 +5,31 @@ function varargout = minkowski_dimension(image_input,divider_factor,varargin)
     %
     % --------------------------------------------------------------------------------
     % Input:
-    % -  mage_input: A tridimensional matrix which represent a rgb image format.
-    % -  divider_factor: Division factor which determines the length reduction of the box length.
-    %    By default is equal to 2.
+    % -  image_input: A tridimensional matrix which represent a rgb image format.
+    % -  divider_factor: Division factor that determines the length reduction of the box length.
+    %    By default, it is equal to 2.
     % -  Optional parameters:
-    %       - 'plot_fit': Generate the log-log fit plot.
-    %       - 'save_plot': Save the log-log fit plot in png and pdf. (Does not depended of 'plot_fit')
-    %       - 'name_figure': For saving the log-log fit plot with specific name 
-    %       - 'create_gif': Generate a gif animation of the squares 
-    %       - 'gif_name': Name of the gif animation (requieres 'create_gif')
+    %       - 'plot_fit': Generates the log-log fit plot.
+    %       - 'save_plot': Saves the log-log fit plot in PNG and PDF format (independent of 'plot_fit').
+    %       - 'name_figure': Saves the log-log fit plot with a specific name.  
+    %       - 'create_gif': Generates a GIF animation of the squares.  
+    %       - 'gif_name': Name of the GIF animation (requires 'create_gif').  
     % --------------------------------------------------------------------------------
-    % Outpput:
-    % -  varargout{1}: The fractal dimension estimated
-    % -  varargout{2}: Information about every iteration of the counting process in a cell structure.
+    % Output:
+    % -  varargout{1}: The estimated fractal dimension.
+    % -  varargout{2}: Information about each iteration of the counting process, stored in a cell array.
     %                  The cell contains: [iteration number, counting boxes, box length, matrix count, image of boxes]
     % --------------------------------------------------------------------------------
     % Observation: 
-    % - First read the observation part of the box_counting function.
-    % - If you uncomment that code, then uncomment the line 62.
+    % - First, read the observation section of the 'box_counting' function.
+    % - If you uncomment that code, also uncomment line 62.
 
-if nargin < 1 && length(size(image_input)) < 3
-    error("Requieres at least the image input and the divider factor")
+
+if nargin < 1 || length(size(image_input)) < 3
+    error("Requieres at least the image input")
 end
 
-if nargin <2 && isempty(divider_factor)
+if nargin <2 || isempty(divider_factor)
     % Default divider
     divider_factor =2;
 end
