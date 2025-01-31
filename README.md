@@ -42,9 +42,9 @@ The following estimations was calculated using the `minkowski_dimension` functio
 
 |Name |Divider Factor|Real Fractal Dimension| Estimated | Gif |
 |-----|-----|-----|-----|-----|
-| Sierpinski | 2 | $\log_2 3$| 1.63 | <img src = "./fractal_algorithm_images/sierp_order8gif.gif" width = "200" heigth = "200"> |
-| Koch Curve | 1.25 | $\log_3 4$| 1.3 | <img src = "./fractal_algorithm_images/koch_curvegif.gif" width = "200" heigth ="300"> |
-| Boundary of Dragon Curve | 2 | $\approx 1.5236$ |  1.83 |<img src = "./fractal_algorithm_images/dragongif.gif" width = 200 heigth = 200>|
+| Sierpinski | 2 | $\log_2 3$| 1.63 | <img src = "./fractal_algorithm_images/sierp_order8gif.gif" width = "250" heigth = "250"> |
+| Koch Curve | 1.25 | $\log_3 4$| 1.3 | <img src = "./fractal_algorithm_images/koch_curvegif.gif" width = "250" heigth ="350"> |
+| Boundary of Dragon Curve | 2 | $\approx 1.5236$ |  1.83 |<img src = "./fractal_algorithm_images/dragongif.gif" width = 250 heigth = 250>|
 
 ## Function
 
